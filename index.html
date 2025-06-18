@@ -7,29 +7,33 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🎲 ゾロ目サイコロ</h1>
+  <header>
+    <h1>🎲 ゾロ目サイコロ</h1>
+    <button id="toggle-theme">🌗 テーマ切り替え</button>
+    <button id="go-home">🏠 ホームへ</button>
+  </header>
 
-  <div id="controls">
-    <label for="dice-count">サイコロの数: </label>
-    <select id="dice-count">
-      <option value="2" selected>2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-    </select>
-    <br>
-    <button onclick="rollOnce()">1回振る</button>
-    <button onclick="startAutoRoll()">ゾロ目が出るまで振る</button>
-  </div>
+  <main>
+    <div id="controls">
+      <label for="dice-count">サイコロの数: </label>
+      <select id="dice-count">
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <br>
+      <button onclick="rollOnce()">1回振る</button>
+      <button onclick="startAutoRoll()">ゾロ目が出るまで振る</button>
+    </div>
 
-  <div id="dice-container"></div>
+    <div id="dice-container"></div>
+    <div id="result-message"></div>
 
-  <div id="result-message"></div>
-
-  <h3>履歴（最新順）</h3>
-  <ul id="history-list"></ul>
+    <h3>履歴（最新順）</h3>
+    <ul id="history-list"></ul>
+  </main>
 
   <audio id="success-sound" src="success.mp3" preload="auto"></audio>
-
   <script src="script.js"></script>
 </body>
 </html>
