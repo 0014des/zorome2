@@ -2,11 +2,20 @@ let autoRolling = false;
 let history = [];
 const sound = document.getElementById("success-sound");
 
+const diceFaces = ["⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+
+document.getElementById("toggle-theme").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+
+document.getElementById("go-home").addEventListener("click", () => {
+  alert("ホーム画面はまだ実装されていません！（仮）");
+});
+
 function rollOnce() {
   if (autoRolling) return;
   const result = rollDice();
   const isZoro = isZorome(result);
-
   updateResultMessage(result, isZoro);
 }
 
@@ -37,7 +46,7 @@ function rollDice() {
 
     const dice = document.createElement("div");
     dice.className = "dice";
-    dice.textContent = value;
+    dice.textContent = diceFaces[value - 1]; // Unicode 絵柄
     container.appendChild(dice);
   }
 
@@ -51,11 +60,12 @@ function isZorome(arr) {
 
 function updateResultMessage(result, isZoro) {
   if (isZoro) {
-    setResult(`🎉 ゾロ目成功！出目は ${result[0]}！`, "green");
+    setResult(`🎉 ゾロ目成功！出目は ${diceFaces[result[0] - 1]}！`, "green");
     sound.currentTime = 0;
     sound.play();
   } else {
-    setResult(`出目: ${result.join(", ")}（ゾロ目ではありません）`, "black");
+    const readable = result.map(v => diceFaces[v - 1]).join(", ");
+    setResult(`出目: ${readable}（ゾロ目ではありません）`, "black");
   }
 }
 
@@ -67,7 +77,8 @@ function setResult(text, color) {
 
 function addToHistory(result) {
   const historyList = document.getElementById("history-list");
-  history.unshift(result.join(", "));
+  const readable = result.map(v => diceFaces[v - 1]).join(", ");
+  history.unshift(readable);
   if (history.length > 100) history.pop();
 
   historyList.innerHTML = "";
