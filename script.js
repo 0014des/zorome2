@@ -106,11 +106,3 @@ function startAutoRoll() {
     }
   }, 200);
 }
-
-function stopAutoRoll() {
-  if (!autoRolling) return;
-  clearInterval(autoRollInterval);
-  autoRolling = false;
-  setResult("⛔ 自動ロールを停止しました", "red");
-}
-
