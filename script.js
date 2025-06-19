@@ -88,3 +88,29 @@ function addToHistory(result) {
     historyList.appendChild(li);
   });
 }
+
+let autoRolling = false;
+let autoRollInterval = null; // ← 追加
+
+function startAutoRoll() {
+  if (autoRolling) return;
+  autoRolling = true;
+  setResult("ゾロ目が出るまで振り続けています...", "black");
+
+  autoRollInterval = setInterval(() => {
+    const result = rollDice();
+    if (isZorome(result)) {
+      clearInterval(autoRollInterval);
+      autoRolling = false;
+      updateResultMessage(result, true);
+    }
+  }, 200);
+}
+
+function stopAutoRoll() {
+  if (!autoRolling) return;
+  clearInterval(autoRollInterval);
+  autoRolling = false;
+  setResult("⛔ 自動ロールを停止しました", "red");
+}
+
