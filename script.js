@@ -9,7 +9,7 @@ document.getElementById("toggle-theme").addEventListener("click", () => {
 });
 
 document.getElementById("go-home").addEventListener("click", () => {
-  alert("ホーム画面はまだ実装されていません！（仮）");
+  alert("ホーム画面なんれあるわけないだろｗ");
 });
 
 function rollOnce() {
